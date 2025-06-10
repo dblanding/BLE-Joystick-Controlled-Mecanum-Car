@@ -21,7 +21,7 @@
 * The image below shows the Adeept Mecanum Wheel Car overlaid on a diagram showing its *natural* X & Y axes.
     * If wheels 1 & 3 are driven forward, the car will move in the X direction. The rollers on wheels 2 & 4 will spin freely to allow this.
     * If wheels 2 & 4 are driven forward, the car will move in the Y direction. The rollers on wheels 1 & 3 will spin freely to allow this.
-    * If the right wheels are dirven forward and the left wheels are driven backward, the car will spin in place CCW.
+    * If the right wheels are driven forward and the left wheels are driven backward, the car will spin in place CCW.
     * These 3 degrees of freedom are independent, allowing them to be combined in any proportion without affecting each other. This allows the car to move gracefully in any direction, fast or slow, while also spinning about its axis, either CW or CCW.
 
 ![Natural Axes of Mecanum Wheel Car](imgs/mecanum_car_axes.jpeg)
@@ -34,4 +34,4 @@
     1. Convert the joystick X, Y coordinates to polar coordinates (R, theta).
     2. Subtract pi/4 from theta.
     3. Convert back to rectangular coordinates.
-    4. Send the new coordinates to the robot.
+    4. Use the new coordinates to drive the motors.
