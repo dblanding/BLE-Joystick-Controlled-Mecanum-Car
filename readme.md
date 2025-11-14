@@ -35,3 +35,9 @@
     2. Subtract pi/4 from theta.
     3. Convert back to rectangular coordinates.
     4. Use the new coordinates to drive the motors.
+
+### Performance in operation
+* The first thing I discovered is that the powerbank I am using to power the joystick remote shuts off spontaneously becasue the current draw from the pico is so low. It doesn't do trickle. So I plugged it into my laptop USB for power.
+* The video below shows how the robot being controlled in all 3 DOF with X, Y, & SPIN all superimposed.
+![Mecanum wheel car in operation](IMG_4631.mov)
+
