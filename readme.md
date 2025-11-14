@@ -38,7 +38,6 @@
 
 ### Performance in operation
 * The first thing I discovered is that the powerbank I am using to power the joystick remote shuts off spontaneously becasue the current draw from the pico is so low. It doesn't do trickle. So I plugged it into my laptop USB for power.
-* The video below shows how the robot being controlled in all 3 DOF with X, Y, & SPIN all superimposed.
+* The video below shows how the robot being controlled in all 3 DOF with **X**, **Y**, and **θz** all superimposed.
 
-![Mecanum wheel car in operation](IMG_4631.mov)
-
+https://github.com/user-attachments/assets/002a17ee-53f1-4d82-afa3-9c98e6867681
