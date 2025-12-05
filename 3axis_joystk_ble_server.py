@@ -10,6 +10,9 @@ import time
 # Set up onboard LED
 led = Pin("LED", Pin.OUT, value=0)
 
+# Set up pin to switch to tare mode
+tare = Pin(15, Pin.IN, Pin.PULL_DOWN)
+
 # Set up joystick on ADC pins
 adc_x = ADC(Pin(26))
 adc_y = ADC(Pin(27))
@@ -43,6 +46,10 @@ async def ble_task():
             await connection.disconnected()
 
 async def joystk_task():
+    # Initial trim values for tare mode
+    x_trim = 0
+    y_trim = 0
+    z_trim = 0
     while True:
         # get joystick axis values
         js_x = adc_x.read_u16()
@@ -50,11 +57,20 @@ async def joystk_task():
         js_z = adc_z.read_u16()
 
         # convert to ints: -127 < value < 127
-        x = round(js_x / 256) - 130
-        y = round(js_y / 256) - 132
-        z = round(js_z / 256) - 130
+        x = round(js_x / 256) - 128 - x_trim
+        y = round(js_y / 256) - 128 - y_trim
+        z = round(js_z / 256) - 128 - z_trim
 
-        ble_characteristic.write(encode(x, y, z))
+        # in tare mode?
+        if tare.value():
+            # adjust trim values to null output
+            x_trim += x
+            y_trim += y
+            z_trim += z
+            print(f"Trim values: {x_trim}, {y_trim}, {z_trim}")
+
+        else:
+            ble_characteristic.write(encode(x, y, z))
         led.toggle()
         await asyncio.sleep_ms(100)
 
